@@ -1,0 +1,73 @@
+{
+    "name": "carmelosantana/coqui-toolkit-dokploy",
+    "description": "Dokploy deployment management toolkit for Coqui — projects, applications, Docker Compose services, backups, deployments, containers, and domains via the Dokploy REST API.",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "coqui",
+        "dokploy",
+        "deployment",
+        "docker",
+        "compose",
+        "backup",
+        "paas",
+        "toolkit",
+        "php-agents"
+    ],
+    "authors": [
+        {
+            "name": "Carmelo Santana"
+        }
+    ],
+    "require": {
+        "php": "^8.4",
+        "symfony/http-client": "^7.0"
+    },
+    "require-dev": {
+        "carmelosantana/php-agents": "^0.7",
+        "pestphp/pest": "^3.0",
+        "phpstan/phpstan": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "CarmeloSantana\\CoquiToolkitDokploy\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "CarmeloSantana\\CoquiToolkitDokploy\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "php-agents": {
+            "toolkits": [
+                "CarmeloSantana\\CoquiToolkitDokploy\\DokployToolkit"
+            ],
+            "credentials": {
+                "DOKPLOY_API_TOKEN": "Dokploy API token — generate at Settings → Profile → API/CLI section in your Dokploy dashboard",
+                "DOKPLOY_BASE_URL": "Dokploy instance base URL (e.g. https://dokploy.example.com)"
+            },
+            "gated": {
+                "dokploy_project": ["delete"],
+                "dokploy_app": ["delete", "deploy", "redeploy", "stop"],
+                "dokploy_compose": ["delete", "deploy", "redeploy", "stop"],
+                "dokploy_backup": ["delete", "run"],
+                "dokploy_deployment": ["kill", "remove"],
+                "dokploy_docker": ["restart"],
+                "dokploy_domain": ["delete"]
+            }
+        }
+    },
+    "scripts": {
+        "test": "pest",
+        "analyse": "phpstan analyse"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
