@@ -285,10 +285,10 @@ test('dokploy_backup run uses type-specific endpoint', function () {
 
     $toolkit = mockDokployToolkit($mockClient);
     $tool = findTool($toolkit, 'dokploy_backup');
-    $result = $tool->execute(['action' => 'run', 'backupId' => 'b-1', 'databaseType' => 'postgres']);
+    $result = $tool->execute(['action' => 'run', 'backupId' => 'b-1', 'databaseType' => 'web-server']);
 
     expect($result->status)->toBe(ToolResultStatus::Success);
-    expect($captured['url'])->toContain('backup.manualBackupPostgres');
+    expect($captured['url'])->toContain('backup.manualBackupWebServer');
 });
 
 test('dokploy_backup list_files returns file data', function () {

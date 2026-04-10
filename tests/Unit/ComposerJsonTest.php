@@ -38,7 +38,7 @@ test('composer.json declares toolkit class', function () {
     $composer = json_decode(file_get_contents($composerPath), true);
 
     expect($composer['extra']['php-agents']['toolkits'])
-        ->toContain('CoquiBot\\Toolkits\\Dokploy\\DokployToolkit');
+    ->toContain('CarmeloSantana\\CoquiToolkitDokploy\\DokployToolkit');
 });
 
 test('gated project actions include delete', function () {
